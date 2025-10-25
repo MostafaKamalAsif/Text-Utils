@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "/src/components/ui/textarea"
 import Conatiner from '../Conatiner'
 
-import { Button } from "@/components/ui/button"
+import { Button } from "/src/Components/ui/button"
 const Analze = () => {
     const[text, settext]=useState("")
     const handelText=(e)=>{
