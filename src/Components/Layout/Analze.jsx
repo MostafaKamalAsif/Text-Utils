@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Textarea } from "/src/components/ui/textarea"
+import { Textarea } from "/src/Components/ui/textarea"
 import Conatiner from '../Conatiner'
 
 import { Button } from "/src/Components/ui/button"
