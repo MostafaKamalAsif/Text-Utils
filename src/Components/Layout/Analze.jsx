@@ -30,9 +30,10 @@ const handleCapitalizeClick = () => {
   return (
    <>
   <div className="py-[120px] bg-gray-200">
-    <Conatiner>
-      <h1 className='text-3xl text-black font-bold py-7.5'>Enter the  text to analize below </h1>
-<Textarea className={"max-h-[200px] min-h-[200px] overflow-y-scroll "} value={text} onChange={handelText} placeholder="Type your message here." />
+    <Conatiner> 
+ <h1 className='underline underline-offset-10 text-4xl text-center text-black font-bold py-7.5'>Text Analyzer</h1>
+      <h2 className='text-3xl text-black font-semibold py-7.5'>Enter the  text to analize below </h2>
+<Textarea className={"max-h-[200px] min-h-[200px] overflow-y-scroll shadow-2xl bg-white "} value={text} onChange={handelText} placeholder="Type your message here." />
 <div className="flex flex-wrap items-center gap-x-3 my-5 md:flex-row">
       <Button className={"bg-blue-500 text-white font-semibold cursor-pointer"} onClick={handelUpClick}>Convert to Uppercase</Button>
 
@@ -49,7 +50,7 @@ const handleCapitalizeClick = () => {
     </div>
       <h2 className='text-2xl text-black font-bold py-5.5' >Your Text Summary : </h2>
       <p>{text.split(" ").length-1} Words and {text.length} Letters</p>
-      <p>{(text.split(" ").length-1)*0.005} minutes need to read the text for an average person</p>
+      <p>{(text.split(" ").length-1)*0.008} minutes need to read the text for an average person</p>
       <h3 className='text-2xl text-black font-bold py-5.5'>Preview:</h3>
       <p>{text} </p>
 
