@@ -1,63 +1,97 @@
-import React, { useState } from 'react'
-import { Textarea } from "/src/Components/ui/textarea"
-import Conatiner from '../Conatiner'
+import React, { useState } from "react";
+import { Textarea } from "/src/Components/ui/textarea";
+import { Button } from "/src/Components/ui/button";
+import Container from "../Conatiner";
 
-import { Button } from "/src/Components/ui/button"
 const Analze = () => {
-    const[text, settext]=useState("")
-    const handelText=(e)=>{
-      settext(e.target.value)
-      
-    };
-    const handelUpClick=()=>{
- const newtext=text.toUpperCase();
- settext(newtext);
-    }
+const [text, setText] = useState("");
 
-    const handelLowClick=()=>{
- const newtext=text.toLowerCase();
- settext(newtext);
-    }
+const handleText = (e) => setText(e.target.value);
+const handleUpClick = () => setText(text.toUpperCase());
+const handleLowClick = () => setText(text.toLowerCase());
 const handleCapitalizeClick = () => {
-  const newText = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-  settext(newText);
+const newText = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+setText(newText);
 };
+const handleClearClick = () => setText("");
 
-     const handelClearClick=()=>{
+const wordCount = text.trim() === "" ? 0 : text.split(/\s+/).length;
+const readingTime = (wordCount * 0.008).toFixed(2);
 
- settext("");
-    }
-  return (
-   <>
-  <div className="py-[120px] bg-gray-200">
-    <Conatiner> 
- <h1 className='underline underline-offset-10 text-4xl text-center text-black font-bold py-7.5'>Text Analyzer</h1>
-      <h2 className='text-3xl text-black font-semibold py-7.5'>Enter the  text to analize below </h2>
-<Textarea className={"max-h-[200px] min-h-[200px] overflow-y-scroll shadow-2xl bg-white "} value={text} onChange={handelText} placeholder="Type your message here." />
-<div className="flex flex-wrap items-center gap-x-3 my-5 md:flex-row">
-      <Button className={"bg-blue-500 text-white font-semibold cursor-pointer"} onClick={handelUpClick}>Convert to Uppercase</Button>
+return (
+<div className="bg-gradient-to-br from-gray-100 to-gray-200 py-20 min-h-screen">
+<Container>
+<div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-2xl p-8 transition-all">
+<h1 className="text-4xl font-extrabold text-center text-blue-600 underline underline-offset-8 mb-6">
+Text Analyzer
+</h1>
+<p className="text-gray-700 text-center mb-10 text-lg">
+Enter your text below and perform quick text transformations.
+</p>
 
-      <Button className={"bg-blue-500 text-white font-semibold cursor-pointer"} onClick={handelLowClick}>
-        Convert to Lowercase
-      </Button>
-      <Button className={"bg-blue-500 text-white font-semibold cursor-pointer"} onClick={handleCapitalizeClick}>
-        Convert to Capitalize
-      </Button>
-<Button className={"bg-blue-500 text-white font-semibold cursor-pointer"} onClick={handelClearClick}>
-        Clear
-      </Button>
-    
+      <Textarea
+        className="min-h-[200px] bg-gray-50 border-2 border-blue-100 focus:border-blue-400 focus:ring-2 focus:ring-blue-300 rounded-xl p-4 text-gray-800 font-medium resize-none transition-all"
+        value={text}
+        onChange={handleText}
+        placeholder="Type or paste your text here..."
+      />
+
+      <div className="flex flex-wrap justify-center gap-4 mt-8">
+        <Button
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-all"
+          onClick={handleUpClick}
+        >
+          Uppercase
+        </Button>
+        <Button
+          className="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-all"
+          onClick={handleLowClick}
+        >
+          Lowercase
+        </Button>
+        <Button
+          className="bg-purple-500 hover:bg-purple-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-all"
+          onClick={handleCapitalizeClick}
+        >
+          Capitalize
+        </Button>
+        <Button
+          className="bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-all"
+          onClick={handleClearClick}
+        >
+          Clear
+        </Button>
+      </div>
+
+      <div className="mt-10 text-gray-800">
+        <h2 className="text-2xl font-bold mb-3 text-blue-700">
+          Text Summary
+        </h2>
+        <p className="text-lg">
+          <span className="font-semibold text-blue-600">{wordCount}</span>{" "}
+          words and{" "}
+          <span className="font-semibold text-blue-600">{text.length}</span>{" "}
+          characters
+        </p>
+        <p className="text-gray-600">
+          Reading time:{" "}
+          <span className="font-medium">{readingTime} minutes</span>
+        </p>
+
+        <h3 className="text-2xl font-bold mt-8 mb-2 text-blue-700">
+          Preview
+        </h3>
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 min-h-[100px]">
+          <p className="text-gray-700 whitespace-pre-wrap">
+            {text.length > 0 ? text : "Nothing to preview."}
+          </p>
+        </div>
+      </div>
     </div>
-      <h2 className='text-2xl text-black font-bold py-5.5' >Your Text Summary : </h2>
-      <p>{text.split(" ").length-1} Words and {text.length} Letters</p>
-      <p>{(text.split(" ").length-1)*0.008} minutes need to read the text for an average person</p>
-      <h3 className='text-2xl text-black font-bold py-5.5'>Preview:</h3>
-      <p>{text} </p>
+  </Container>
+</div>
 
-    </Conatiner>
-  </div>
-  </>
-  )
-}
 
-export default Analze
+);
+};
+export default Analze;
